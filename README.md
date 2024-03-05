@@ -44,5 +44,5 @@ Follow these steps to set up the project locally:
     python manage.py runserver
     ```
 
-7. **Open your browser and go to [http://localhost:8000/admin](http://localhost:8000/admin) to log in with the superuser account and start managing emissions data.**
+7. **Open your browser and go to [http://localhost:8000/admin](http://localhost:8000/admin) to log in with your account and start managing emissions data.**
 
