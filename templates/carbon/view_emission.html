@@ -1,0 +1,117 @@
+{% extends 'base.html'%}
+
+{% load static %}
+
+
+{% block content %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vehicle Carbon Emissions</title>
+</head>
+<body>
+    <header>
+        <h1>Toyota Models -- Carbon Emissions Data</h1>
+    </header>
+    
+    <main>
+        <form action="{% url 'view-emission' %}" method="POST" class="form-inline">
+            {% csrf_token %}
+            {% include 'partials/_messages.html' %}
+    
+            <div class="form-group-inline">
+                <div class="form-group">
+                    <label for="yearDropdown">Choose a year:</label>
+                    <select name="selected_year" id="yearDropdown" class="form-control form-control-sm">
+                        <option value="0">--Please choose a year--</option>
+                        {% for year in unique_years %}
+                            <option value="{{ year }}">{{ year }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+    
+                <div class="form-group">
+                    <label for="modelDropdown">Choose a model:</label>
+                    <select name="selected_model" id="modelDropdown" class="form-control form-control-sm">
+                        <option value="0">--Please choose a model--</option>
+                        {% for model in unique_models %}
+                            <option value="{{ model }}">{{ model }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+    
+                <div class="form-group">
+                    <label for="unitsDropdown">Choose units:</label>
+                    <select name="selected_units" id="unitsDropdown" class="form-control form-control-sm">
+                        <option value="0">--Please choose a unit--</option>
+                        <option value="carbon_lb">Pounds (lb)</option>
+                        <option value="carbon_kg">Kilograms (kg)</option>
+                        <option value="carbon_mt">Metric Tonne (mt)</option>
+                        <option value="carbon_g">Grams (g)</option>
+                    </select>
+                </div>
+
+                <input type="submit" value="Generate Table" class="btn btn-block btn-primary submit-btn" />              
+            </div>
+    
+            
+        </form>
+    </main>
+    
+    <style>
+        .form-group-inline {
+            display: flex;
+            justify-content: space-between;
+        }
+    
+        /* Optional: Add some margin to each form group for spacing */
+        .form-group {
+            margin-right: 10px;
+        }
+    </style>
+    
+    
+        <section>
+            <h2>Emissions Data</h2>
+            <table id="emissions-table">
+                <thead>
+                    <tr>
+                        <th style="width: 200px;">Year</th>
+                        <th style="width: 400px;">Model</th>
+                        <th style="width: 200px;">Emissions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for year, model, emission in rows %}
+                    <tr>
+                        <td>{{ year }}</td>
+                        <td>{{ model }}</td>
+                        <td>{{ emission }}</td>
+                    </tr>
+                    {% endfor %}
+    
+                </tbody>
+            </table>
+        </section>
+
+        <section id="average-emissions">
+            <h2>Average Emissions</h2>
+            <p id="average-year">Average emission for the chosen year:{{ average_emissions_year }}</p>
+            <p id="average-model">Average emission for the chosen model: {{ average_emissions_model }}</p>
+        </section>
+
+        <section>
+            <p>{{footer_text}}</p>
+        </section>
+    </main>
+    
+</body>
+</html>
+
+<script src="{% static 'js/view_emission.js' %}"></script>
+
+{% endblock content %}
+
