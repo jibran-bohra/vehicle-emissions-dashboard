@@ -11,13 +11,13 @@ Follow these steps to set up the project locally:
 1. **Clone the repository:**
 
     ```bash
-    git clone https://github.com/jibran-bohra/toyota-emissions-insights.git
+    git clone https://github.com/jibran-bohra/vehicle-emissions-dashboard.git
     ```
 
 2. **Navigate to the project directory:**
 
     ```bash
-    cd toyota-emissions-insights
+    cd vehicle-emissions-dashboard
     ```
 
 3. **Create and activate a virtual environment:**
