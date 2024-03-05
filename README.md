@@ -23,15 +23,15 @@ Follow these steps to set up the project locally:
 3. **Create and activate a virtual environment:**
 
     ```bash
-    python -m venv venv
+    python3 -m venv venv
     source venv/bin/activate  # On Windows, use `venv\Scripts\activate`
     ```
 
 4. **Make and Apply migrations:**
 
     ```bash
-    python manage.py makemigrations
-    python manage.py migrate
+    python3 manage.py makemigrations
+    python3 manage.py migrate
     ```
 
 5. **Get an API key:**
@@ -41,7 +41,7 @@ Follow these steps to set up the project locally:
 6. **Start the development server:**
 
     ```bash
-    python manage.py runserver
+    python3 manage.py runserver
     ```
 
 7. **Open your browser and go to [http://localhost:8000/admin](http://localhost:8000/admin) to log in with your account and start managing emissions data.**
